@@ -19,7 +19,7 @@ class Fileshares extends Seeder
 			'hashlink' => 'secret',
 			'privhash' => 'secret', 
 			'filename' =>'files/2017/sample.jpg', 
-			'fileSize' =>'23KB',
+			'filesize' =>'23KB',
 			
         ]);
 		

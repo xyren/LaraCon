@@ -22,7 +22,7 @@ class CreateFilesharesTable extends Migration
             $table->string('hashlink', 100);
             $table->string('privhash', 100);
             $table->string('filename', 100);
-            $table->string('fileSize', 100);
+            $table->string('filesize', 100);
 			
             $table->timestamps();
         });

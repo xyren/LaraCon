@@ -16,18 +16,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('fileshare', 'FilesharesController');
-
+Route::resource('fileshare', 'FilesharesController', 
+	['except' => ['view']]);
+	
+Route::get('/{hashlink}/view','FilesharesController@view');
+Route::get('/{hashlink}/download','FilesharesController@download');
 
 /* 
 Route::resource('fileshare', 'FilesharesController', ['except' => [
     'create', 'store', 'update', 'destroy'
 ]]);
 
-
 Route::get('/file/{action?}', function ($id = null) {
-	
 	if($id == null) return view('fileshare.index');
-    
 	echo " -- $id";
 }); */

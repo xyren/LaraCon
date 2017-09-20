@@ -7,7 +7,8 @@
 	
 	
     @if(Session::has('success'))
-		<div class="alert alert-success">{{Session::get('success')}}</div>
+		<div class="alert alert-success">{{Session::get('success')}}.
+			Click <a href="{{Session::get('hashlink')}}"><b>here</b> to view</div>
 	@elseif(Session::has('fail'))
 		<div class="alert alert-danger">{{Session::get('fail')}}</div>
 	@elseif(Session::has('warning'))
@@ -56,7 +57,7 @@
 		{{ $files->links() }}
   
       @else
-		  <b>No File yet</b>
+		  <b>No File</b>
       @endif
     
 @endsection

@@ -6,7 +6,7 @@
 	
 	
 	
- <form method="post" action="{{url('fileshare')}}">
+ <form method="post" action="{{url('fileshare')}}" enctype="multipart/form-data">
  
  
  @if (count($errors) > 0)
@@ -41,6 +41,17 @@
         <textarea name="description" rows="8" cols="80"></textarea>
       </div>
     </div>
+	
+	<div class="file-field input-field col s12">
+		<div class="btn teal lighten-1">
+			<span>File</span>
+			<input type="file" name="fileupload">
+		</div>
+		<div class="file-path-wrapper">
+			<input class="file-path validate" type="text" >
+		</div>
+	</div>  
+				
     <div class="form-group row">
       <div class="col-md-2"></div>
       <input type="submit" class="btn btn-primary">
