@@ -32,13 +32,12 @@ class SharedFile extends Mailable
 
 		
 		//dd($this->fileshare);
-		return $this->view('fileshare.sharedfile');
-		/* return $this->view('fileshare.sharedfile')
+		//return $this->view('fileshare.sharedfile');
+		return $this->view('fileshare.sharedfile')
 			->with([
-				'filename' => $this->fileInfo->filename,
-				'filesize' => $this->fileInfo->filesize,
-			]); */
-    
+				'filename' => $this->fileshare->filename,
+				'filesize' => $this->fileshare->filesize,
+			]);
     }
 	
 }

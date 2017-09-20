@@ -59,6 +59,7 @@ class FilesharesController extends Controller
 		
 		$this->validate($request, [
 			'title' => 'required|min:5|max:55',
+			'description' => 'required',
 			'fileupload' => 'required|mimes:pdf,doc,docx,jpeg,png,jpg,gif,svg|max:10000',
 		],[
 			'title.required' => 'The Title field is required.',

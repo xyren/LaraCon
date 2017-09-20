@@ -35,11 +35,13 @@
 	  
 	  
     </div>
-    <div class="form-group row">
-      <label for="smFormGroupInput" class="col-sm-2 col-form-label col-form-label-sm">description</label>
+    <div class="form-group row {{$errors->has('description') ? 'has-error' : ''}} ">
+	
+      <label for="lgFormGroupText" class="col-sm-2 col-form-label col-form-label-sm">description</label>
       <div class="col-sm-10">
-        <textarea name="description" rows="8" cols="80"></textarea>
+        <textarea name="description" id="lgFormGroupText" rows="8" cols="80">{{ old('description') }}</textarea>
       </div>
+	  <span class="text-danger">{{ $errors->first('description') }}</span>
     </div>
 	
 	<div class="file-field input-field col s12">
@@ -47,9 +49,7 @@
 			<span>File</span>
 			<input type="file" name="fileupload">
 		</div>
-		<div class="file-path-wrapper">
-			<input class="file-path validate" type="text" >
-		</div>
+		
 	</div>  
 				
     <div class="form-group row">

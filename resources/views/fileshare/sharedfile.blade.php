@@ -1,6 +1,11 @@
 
 
-<h1>Woot Woot!!</h1>
+<h1>Shared File!</h1>
 
-<p>Alfred just found <strong>{{ $fileshare.filename }}  lbs</strong> of kryptonite</p>
+<p>Hi there,<br><br>
 
+
+<strong><a href="{{ asset($fileshare->hashlink) }}/view">Click Here </a></strong> to view the <b>{{ $fileshare->title }}</b> with a size of {{ $fileshare->filesize }}</p>
+
+
+Thank you!
