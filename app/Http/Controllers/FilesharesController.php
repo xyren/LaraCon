@@ -105,7 +105,7 @@ class FilesharesController extends Controller
 		$fileInfo->save();
 		
 		//not yet ready
-		//\Mail::to('jenner.alagao@gmail.com')->send(new SharedFile($fileInfo ));
+		\Mail::to('jenner.alagao@gmail.com')->send(new SharedFile($fileInfo ));
 			
 	    //Session::flash('flash_message', 'Task successfully added!');
         return redirect('/fileshare')

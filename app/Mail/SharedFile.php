@@ -31,7 +31,7 @@ class SharedFile extends Mailable
 		$subject = 'Krytonite Found';
 
 		
-		dd($this->fileshare);
+		//dd($this->fileshare);
 		return $this->view('fileshare.sharedfile');
 		/* return $this->view('fileshare.sharedfile')
 			->with([
