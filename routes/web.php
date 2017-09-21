@@ -21,13 +21,12 @@ Route::resource('fileshare', 'FilesharesController',
 Route::get('/{hashlink}/view','FilesharesController@view');
 Route::get('/{hashlink}/download','FilesharesController@download');
 
-
 Auth::routes();
 
 Route::get('/search',[
-	 'as'   =>'FilesharesController.search',
+	 'as'   =>'fileshare.search',
 	 'uses' =>'FilesharesController@search'
-	]);
+	]);	
 			
 Route::get('/home', 'FilesharesController@index');
 Route::get('logout','HomeController@logout');

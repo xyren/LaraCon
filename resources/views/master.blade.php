@@ -36,6 +36,7 @@
 			.footer{position:fixed;bottom:0px;width:100%;text-align:center;
 				background-color:#fff;border-top:1px solid #ddd;padding:1em;}
 			.padding-top-10{margin-top:20px;}
+			.content{margin-bottom:70px;}
 			
 			@yield('css')
 
@@ -60,6 +61,7 @@
       
 	  
 	  <ul class="nav navbar-nav navbar-right">
+	  <li><a href="#">Learn</a></li>
                         <!-- Authentication Links -->
                         @if (Auth::guest())
                             <li><a href="{{ url('/login') }}">Login</a></li>

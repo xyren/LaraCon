@@ -19,7 +19,7 @@
 		<h1> {{ $ptitle }}</h1>
 	  </div><!-- /.col-lg-6 -->
 	  <div class="col-lg-4">
-	  <form action="{{ route('FilesharesController.search')}}" name="search-form" id="search-form" method="get">
+	  <form action="{{ route('fileshare.search')}}" name="search-form" id="search-form" method="get">
 	  
 		<div class="input-group">
 		  <input type="text" class="form-control" name="keys" placeholder="Search">

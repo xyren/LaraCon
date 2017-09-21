@@ -57,7 +57,6 @@ class FilesharesController extends Controller
 		}
 	}
 	
-	
     public function index()
     {
 		
