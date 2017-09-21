@@ -10,6 +10,11 @@ use File;
 
 class FilesharesController extends Controller
 {
+	public function __construct()
+    {
+        $this->middleware('auth');
+    }
+	
 	public function view($hash = null){
 		
 		

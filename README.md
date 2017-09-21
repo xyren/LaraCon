@@ -85,10 +85,21 @@ edit the D:\__local__\test.pc\laravel\LaraCon\gulpfile.js
 --.copy('node_modules/font-awesome/fonts', 'public/fonts');
 
 app.less
-@import "../../../node_modules/font-awesome/css/font-awesome.css";
+@import "node_modules/font-awesome/scss/font-awesome.scss";
 
 
 https://laracasts.com/discuss/channels/general-discussion/fontawesome-with-webpack-and-laravel-54-wrong-path-to-fonts
+
+
+
+
+
+create authentication page
+>php artisan make:auth
+
+
+
+
 
 
 LINK RES

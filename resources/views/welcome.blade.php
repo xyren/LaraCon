@@ -80,6 +80,7 @@
             <div class="content">
                 <div class="title m-b-md">
                     Laravel
+					<img alt="Brand" src="{{ asset('img/logo.png') }}" class="img-responsive logo">
                 </div>
 
                 <div class="links">
