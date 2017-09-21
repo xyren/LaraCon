@@ -35,13 +35,22 @@
                 font-size: 72px;
                 margin-bottom: 40px;
             }
+			
+			.footer{margin:0 auto;text-align:center;font-size:14px;}
+			.logo{max-height:50px;display:block;margin:0 auto}
         </style>
     </head>
     <body>
         <div class="container">
             <div class="content">
-                <div class="title">404. File Not Found</div>
+                <div class="title">404. File Not Found
+				<a class="navbar-brand" href="{{ URL::to('/fileshare') }}"><img alt="Brand" src="{{ asset('img/logo.png') }}" class="img-responsive logo"></a>
+				<p class="footer">&copy; <? echo date('Y');?> Fileshare, Inc.</p>
+				</div>
+				
+				
             </div>
+			
         </div>
     </body>
 </html>

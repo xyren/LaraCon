@@ -1,9 +1,10 @@
 @extends('master')
 
+@section('title','Upload File')
 
 @section('container')
 
-	<a href="{{ url()->previous() }}" class="btn btn-default pull-right">
+	<a href="{{ url('/fileshare') }}" class="btn btn-default pull-right">
 		 <i class="fa fa-list"></i> Back to list
 	</a>
 	<h1>Upload File</h1>

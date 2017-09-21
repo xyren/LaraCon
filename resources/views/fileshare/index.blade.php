@@ -1,5 +1,6 @@
 @extends('master')
 
+@section('title','File Index')
 
 @section('container')
 
@@ -13,7 +14,12 @@
 	
     @if(Session::has('success'))
 		<div class="alert alert-success">{{Session::get('success')}}.
-			Click <a href="{{Session::get('hashlink')}}/view"><b>here</b></a> to view</div>
+		
+		@if(Session::has('hashlink'))
+			Click <a href="{{Session::get('hashlink')}}/view"><b>here</b></a> to view
+		@endif
+		
+		</div>
 	@elseif(Session::has('fail'))
 		<div class="alert alert-danger">{{Session::get('fail')}}</div>
 	@elseif(Session::has('warning'))
@@ -53,7 +59,7 @@
 					</td>
 					<td>{{$file['filesize']}}</td>
 					<td>{{$file['created_at']}}</td>
-					<td class="width-150">
+					<td class="width-150 text-right">
 					
 					<form action="{{action('FilesharesController@destroy', $file['id'])}}" method="post" class="inline-block">
 					<a href="{{action('FilesharesController@edit', $file['id'])}}" class="btn btn-default btn-sm">Edit</a>

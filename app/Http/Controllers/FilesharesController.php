@@ -141,12 +141,21 @@ class FilesharesController extends Controller
 
     public function update(Request $request, $id)
     {
-        //
+		
+		$this->validate($request, [
+			'title' => 'required|min:5|max:55',
+			'description' => 'required',
+		],[
+			'title.required' => 'The Title field is required.',
+			'title.min' => 'The Title must be at least 5 characters.',
+			'title.max' => 'The Title may not be greater than 55 characters.',
+		]);
+		
 		$file = Fileshares::find($id);
         $file->title = $request->get('title');
         $file->description = $request->get('description');
         $file->save();
-        return redirect('/fileshare')->with('success','Changes success');
+        return redirect('/fileshare')->with('success','Changes successfully saved.');
     }
     
 	public function destroy($id)

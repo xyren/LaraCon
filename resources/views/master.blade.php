@@ -6,7 +6,7 @@
 		<meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1, user-scalable=0" />
 		<!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
 
-        <title>Laravel</title>
+        <title>@yield('title','Laravel')</title>
 
 		<script src="{{ asset('js/app.js') }}"></script>
 		<script src="{{ asset('js/fileserve.js') }}"></script>
@@ -33,7 +33,10 @@
 				 -moz-border-radius: 0 !important;
 					  border-radius: 0 !important;
 			}
-
+			.footer{position:fixed;bottom:0px;width:100%;text-align:center;
+				background-color:#fff;border-top:1px solid #ddd;padding:1em;}
+			
+			@yield('css')
 
         </style>
     </head>
@@ -137,13 +140,13 @@
 		</div>
      
 
-	 <footer class="footer"><br/>
-	 <hr/>
-        <p>&copy; <? echo date('Y');?> Fileshare, Inc.</p>
-      </footer>
 
     </div> <!-- /container -->
 
+	 <footer class="footer">
+	 
+        &copy; <? echo date('Y');?> Fileshare, Inc.
+      </footer>
    <?/*  @if (Route::has('login'))
 		<div class="top-right links">
 			@if (Auth::check())
