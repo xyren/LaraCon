@@ -35,6 +35,7 @@
 			}
 			.footer{position:fixed;bottom:0px;width:100%;text-align:center;
 				background-color:#fff;border-top:1px solid #ddd;padding:1em;}
+			.padding-top-10{margin-top:20px;}
 			
 			@yield('css')
 

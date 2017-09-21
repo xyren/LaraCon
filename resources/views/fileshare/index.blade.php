@@ -1,6 +1,6 @@
 @extends('master')
 
-@section('title','File Index')
+@section('title','Laravel: File Index')
 
 @section('container')
 
@@ -8,9 +8,27 @@
 		 <i class="fa fa-cloud-upload"></i> Upload File
 	</a>
 	
-	<h1>File index</h1>
+	
+			
+	
+	<br class="clearfix">
 	
 	
+	<div class="row padding-top-10 ">
+	  <div class="col-lg-8">
+		<h1> {{ $ptitle }}</h1>
+	  </div><!-- /.col-lg-6 -->
+	  <div class="col-lg-4">
+	  <form action="{{ route('FilesharesController.search')}}" name="search-form" id="search-form" method="get">
+	  
+		<div class="input-group">
+		  <input type="text" class="form-control" name="keys" placeholder="Search">
+		  <span class="input-group-btn">
+			<button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
+		  </span>
+		</div><!-- /input-group -->
+	  </div><!-- /.col-lg-6 -->
+	</div><!-- /.row -->
 	
     @if(Session::has('success'))
 		<div class="alert alert-success">{{Session::get('success')}}.

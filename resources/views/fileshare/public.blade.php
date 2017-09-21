@@ -30,13 +30,29 @@
 			<p>{!! nl2br(e($file->description)) !!}</p>
 			
 			<b>Shareable link:</b>
-			<input type="text" class="form-control form-block" readonly value="{{action('FilesharesController@view', $file['hashlink'])}}">
 			
+			<div class="input-group">
+				<input type="text" name="share-link" placeholder="link" readonly value="{{action('FilesharesController@view', $file['hashlink'])}}" class="share-link form-control" />
+
+				<span class="input-group-btn" >
+					<button class="btn btn-info copy-btn" type="button">Copy</button>
+				</span>
+			</div>
+
+		
 			<br/>
 			
 			<a class="btn btn-lg btn-primary" href="{{action('FilesharesController@download', $file['hashlink'])}}" title="Download File"><i class="fa fa-cloud-download fa-lg"></i> Download</a>
 			
 			
+			<script>
+				$(document).ready(function () {
+					$('.copy-btn').on( 'click', function(){
+						$('.share-link').select();
+						document.execCommand("copy");
+					});
+				});
+			</script>	
 		</div>
 	</div>
 	

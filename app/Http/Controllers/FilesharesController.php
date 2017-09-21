@@ -33,6 +33,7 @@ class FilesharesController extends Controller
 		}
 		//return 'access publick hash --'.$hash;
 	}
+	
 	public function download($hash = null){
 		
 		
@@ -72,8 +73,22 @@ class FilesharesController extends Controller
 		//dd($files);
         //return view('fileshare.index', compact('files'));
 		$files = Fileshares::where('user_id', '=', $userID)->paginate(10);
-        return view('fileshare.index')->with('files',$files );
+        $ptitle = 'File Index';
+        return view('fileshare.index')->with('files',$files)->with('ptitle',$ptitle);
         //return view('fileshare.index')->with('files', $files->paginate(10));
+    }
+	
+	public function search(Request $request)
+    {
+		
+		$userID = \Auth::id();
+		$keyw = \Request::get('keys'); //<-- we use global request to get the param of URI
+			
+		$files = Fileshares::where('user_id', '=', $userID)
+			->where('title', 'like', '%'.$keyw.'%')->paginate(10);
+		
+		$ptitle = 'Search';
+        return view('fileshare.index')->with('files',$files)->with('ptitle',$ptitle);
     }
 
     public function create()

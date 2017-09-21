@@ -16,7 +16,7 @@ Route::get('articles/{id}/edit',[
 */			
 
 Route::resource('fileshare', 'FilesharesController', 
-	['except' => ['view','download']]);
+	['except' => ['view','download','search']]);
 
 Route::get('/{hashlink}/view','FilesharesController@view');
 Route::get('/{hashlink}/download','FilesharesController@download');
@@ -24,6 +24,11 @@ Route::get('/{hashlink}/download','FilesharesController@download');
 
 Auth::routes();
 
+Route::get('/search',[
+	 'as'   =>'FilesharesController.search',
+	 'uses' =>'FilesharesController@search'
+	]);
+			
 Route::get('/home', 'FilesharesController@index');
 Route::get('logout','HomeController@logout');
 
