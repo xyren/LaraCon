@@ -21,6 +21,8 @@ class CreateFilesharesTable extends Migration
             $table->integer('user_id');
             $table->string('hashlink', 100);
             $table->string('privhash', 100);
+            $table->integer('pub_download');
+            $table->integer('priv_download');
             $table->string('filename', 100);
             $table->string('filesize', 100);
 			

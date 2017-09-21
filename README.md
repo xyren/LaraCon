@@ -77,6 +77,20 @@ file create @ /app/mail
 
 
 
+
+font awesome adding to proj.
+>npm install font-awesome --save
+
+edit the D:\__local__\test.pc\laravel\LaraCon\gulpfile.js
+--.copy('node_modules/font-awesome/fonts', 'public/fonts');
+
+app.less
+@import "../../../node_modules/font-awesome/css/font-awesome.css";
+
+
+https://laracasts.com/discuss/channels/general-discussion/fontawesome-with-webpack-and-laravel-54-wrong-path-to-fonts
+
+
 LINK RES
 --- from here
 https://appdividend.com/2017/05/02/laravel-5-4-crud-example-scratch/

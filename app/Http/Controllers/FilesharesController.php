@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Fileshares;
 use App\Mail\SharedFile;
+use File;
 
 class FilesharesController extends Controller
 {
@@ -26,11 +27,26 @@ class FilesharesController extends Controller
 		//return 'access publick hash --'.$hash;
 	}
 	public function download($hash = null){
-		 return abort(404);
-		$_file = public_path('files/2017-09/8e081c6dc67997b12dd44cfebf2c61ccxyR1505943717.jpg');
 		
-		return response()->download($_file, 'sample.jpg');
-		//return 'access publick hash --'.$hash;
+		
+		$file = Fileshares::
+			where('hashlink','=',$hash)
+			->orWhere('privhash','=',$hash)
+			->get()->first();
+		
+		if($file){
+			//update download counter
+			$file->pub_download = ($file->pub_download + 1);
+			$file->save();
+			
+			$file_name = preg_replace('/[^ \w-]/', '', $file->title);
+			$_file = public_path($file->filename);
+			$fileExt = File::extension(public_path($file->filename));
+			
+			return response()->download($_file, $file_name.'_'. time(). '.' .$fileExt);
+		}else{
+			return abort(404);
+		}
 	}
 	
 	
@@ -60,7 +76,7 @@ class FilesharesController extends Controller
 		$this->validate($request, [
 			'title' => 'required|min:5|max:55',
 			'description' => 'required',
-			'fileupload' => 'required|mimes:pdf,doc,docx,jpeg,png,jpg,gif,svg|max:10000',
+			'fileupload' => 'required|mimes:txt,zip,rar,pdf,doc,docx,jpeg,png,jpg,gif,svg|max:10000',
 		],[
 			'title.required' => 'The Title field is required.',
 			'title.min' => 'The Title must be at least 5 characters.',
@@ -81,17 +97,11 @@ class FilesharesController extends Controller
 		
         $request->fileupload->move($dirUpload, $fileName);
 		
+		//init user ID
 		$userID = 12;
-		/* Fileshares::create( array(
-			'title' 		=> $request->get('title'), 
-			'description' 	=> $request->get('description'), 
-			'user_id' 		=> $userID,  
-			'hashlink' 		=> md5(uniqid(rand(), true)),
-			'privhash' 		=> md5(uniqid(rand(), true)),
-			'filename' 		=> 'files/2017/sample.jpg', 
-			'fileSize'		=> '23KB', 
-		)); */
 		
+		$_filesizeRaw = filesize($dirUpload .'/'. $fileName);
+		$_filesize = Fileshares::filesize_formatted($_filesizeRaw);
 		
 		$fileInfo = new Fileshares([
 			'title' 		=> $request->get('title'), 
@@ -100,14 +110,17 @@ class FilesharesController extends Controller
 			'hashlink' 		=> $hashlink,
 			'privhash' 		=> $privhash,
 			'filename' 		=> $targetDIR .'/'. $fileName, 
-			'filesize'		=> '23KB',
+			'filesize'		=> $_filesize,
 		]);
 		
 		$fileInfo->save();
 		
-		//not yet ready
+		/* 
+		
 		\Mail::to('jenner.alagao@gmail.com')->send(new SharedFile($fileInfo ));
-			
+		
+		 */
+		
 	    //Session::flash('flash_message', 'Task successfully added!');
         return redirect('/fileshare')
 			->with('success','Success Uploading File')
