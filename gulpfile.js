@@ -16,6 +16,7 @@ require('laravel-elixir-vue-2');
 elixir((mix) => {
     mix.sass('app.scss')
 		.copy('resources/assets/img', 'public/img')
+		.copy('resources/assets/js/jquery.backstretch.min.js', 'public/js/jquery.backstretch.min.js')
 		.copy('node_modules/font-awesome/fonts', 'public/fonts')
 		//.browserSync({proxy: 'laracon.dev'})
 		.scripts('resources/assets/js/fileserve.js', 'public/js/fileserve.js')

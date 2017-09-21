@@ -13,6 +13,8 @@ class FilesharesController extends Controller
 	public function __construct()
     {
         $this->middleware('auth');
+		
+
     }
 	
 	public function view($hash = null){
@@ -57,7 +59,8 @@ class FilesharesController extends Controller
 	
     public function index()
     {
-		$userID = 12;
+		
+		$userID = \Auth::id();
 		$files = Fileshares::findFilesByUser($userID)->toArray();
 		
 		/* if(!$files){
@@ -103,7 +106,8 @@ class FilesharesController extends Controller
         $request->fileupload->move($dirUpload, $fileName);
 		
 		//init user ID
-		$userID = 12;
+		//$userID = 12;
+		$userID = \Auth::id();
 		
 		$_filesizeRaw = filesize($dirUpload .'/'. $fileName);
 		$_filesize = Fileshares::filesize_formatted($_filesizeRaw);
@@ -167,6 +171,9 @@ class FilesharesController extends Controller
     {
 		$file = Fileshares::find($id);
 		$file->delete();
+		
+		$userID = \Auth::id();
+		//check if the request to delete is the current user Owner
 
 		return back()->with('warning','Successfully delete');
 		//return redirect('/fileshare')->with('warning','Successfully delete');

@@ -9,17 +9,26 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+		
+		<script src="{{ asset('js/app.js') }}"></script>
+		<script src="{{ asset('js/jquery.backstretch.min.js') }}"></script>
+		
+		
+		
+		
 
         <!-- Styles -->
         <style>
             html, body {
                 background-color: #fff;
-                color: #636b6f;
+                color: #fff;
                 font-family: 'Raleway', sans-serif;
                 font-weight: 100;
                 height: 100vh;
                 margin: 0;
             }
+			
+			h1{font-weight:500;font-size:3em;}
 
             .full-height {
                 height: 100vh;
@@ -42,7 +51,7 @@
             }
 
             .content {
-                text-align: center;
+                text-align: center; max-width:800px;
             }
 
             .title {
@@ -50,7 +59,7 @@
             }
 
             .links > a {
-                color: #636b6f;
+                color: #fff;
                 padding: 0 25px;
                 font-size: 12px;
                 font-weight: 600;
@@ -62,14 +71,34 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+			
+			.logo{max-height:90px;}
+			
+			.full-height{background-color:#eee;}
+			
+
         </style>
+		
+		<script>
+		$(function() {
+			$(".full-height").backstretch(["img/bg1.jpg" , "img/33.jpg" , "img/22.jpg"],{
+				duration: 5000, fade:1500
+			});
+		});
+
+</script>
+
     </head>
     <body>
+	
+	
+	
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
                     @if (Auth::check())
                         <a href="{{ url('/home') }}">Home</a>
+                        <a href="{{ url('/logout') }}">Logout</a>
                     @else
                         <a href="{{ url('/login') }}">Login</a>
                         <a href="{{ url('/register') }}">Register</a>
@@ -79,9 +108,15 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    
 					<img alt="Brand" src="{{ asset('img/logo.png') }}" class="img-responsive logo">
                 </div>
+				
+				<h1>Easy as One-two-three</h1>
+				
+				<p>
+				 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc venenatis nec dolor sit amet congue. Duis maximus leo vitae lectus suscipit, in venenatis elit dignissim. Cras tristique ante ut vehicula tempus. Etiam convallis lobortis iaculis. Nulla et vulputate mauris, et tempor eros. 
+				</p>
 
                 <div class="links">
                     <a href="https://laravel.com/docs">Documentation</a>

@@ -4,7 +4,7 @@
 
 @section('container')
 
-	<a href="{{ url('/fileshare') }}" class="btn btn-default pull-right">
+	<a href="{{ url('/home') }}" class="btn btn-default pull-right">
 		 <i class="fa fa-list"></i> Back to list
 	</a>
 	<h1>Upload File</h1>

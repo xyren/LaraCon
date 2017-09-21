@@ -97,7 +97,8 @@ https://laracasts.com/discuss/channels/general-discussion/fontawesome-with-webpa
 create authentication page
 >php artisan make:auth
 
-
+//you will encounter issue on logout so heres the fixed
+https://stackoverflow.com/questions/39342903/why-does-not-work-logout-route-in-laravel
 
 
 
