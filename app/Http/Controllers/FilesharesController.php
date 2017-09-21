@@ -61,8 +61,9 @@ class FilesharesController extends Controller
     {
 		
 		$userID = \Auth::id();
-		$files = Fileshares::findFilesByUser($userID)->toArray();
+		//$files = Fileshares::findFilesByUser($userID)->toArray();
 		
+		//return $userID;
 		/* if(!$files){
 			return $files;
 		} */
@@ -70,7 +71,9 @@ class FilesharesController extends Controller
 		//$files = Fileshares::find($id);
 		//dd($files);
         //return view('fileshare.index', compact('files'));
-        return view('fileshare.index')->with('files', Fileshares::paginate(10));
+		$files = Fileshares::where('user_id', '=', $userID)->paginate(10);
+        return view('fileshare.index')->with('files',$files );
+        //return view('fileshare.index')->with('files', $files->paginate(10));
     }
 
     public function create()
@@ -144,8 +147,16 @@ class FilesharesController extends Controller
 
     public function edit($id)
     {
+		$userID = \Auth::id();
+		
         $file = Fileshares::find($id);
-        return view('fileshare.edit', compact('file','id'));
+		
+		if($file->user_id == $userID){
+			 return view('fileshare.edit', compact('file','id'));
+		}else{
+			return view('fileshare.permitted');
+		}
+        
     }
 
     public function update(Request $request, $id)
@@ -161,22 +172,39 @@ class FilesharesController extends Controller
 		]);
 		
 		$file = Fileshares::find($id);
-        $file->title = $request->get('title');
-        $file->description = $request->get('description');
-        $file->save();
-        return redirect('/fileshare')->with('success','Changes successfully saved.');
+		//dd($file );
+		$userID = \Auth::id();
+		if($file->user_id == $userID){
+			
+			$file->title = $request->get('title');
+			$file->description = $request->get('description');
+			$file->save();
+			return redirect('/fileshare')->with('success','Changes successfully saved.');
+			
+		}else{
+			return redirect('/fileshare')->with('fail','Invalid file. Changes not saved.');
+		}
+		
     }
     
 	public function destroy($id)
     {
 		$file = Fileshares::find($id);
-		$file->delete();
-		
 		$userID = \Auth::id();
-		//check if the request to delete is the current user Owner
+		if($file->user_id == $userID){
+				
+			$file->delete();
+			
+			$userID = \Auth::id();
+			//check if the request to delete is the current user Owner
 
-		return back()->with('warning','Successfully delete');
-		//return redirect('/fileshare')->with('warning','Successfully delete');
+			return back()->with('warning','Successfully delete');
+			//return redirect('/fileshare')->with('warning','Successfully delete');
+				
+		}else{
+			return redirect('/fileshare')->with('fail','Invalid file. Delete failed');
+		}
+		
     }
 
 }

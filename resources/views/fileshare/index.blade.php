@@ -30,7 +30,7 @@
 	
 	
     
-	@if ($files)
+	@if (!$files->isEmpty())
 		<table class="table table-striped">
 			<thead>
 			  <tr>

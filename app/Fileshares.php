@@ -24,7 +24,7 @@ class Fileshares extends Model
 		return static::where($field, (string)$value)->get();
 	}
 	public static function findFilesByUser($value) {
-		return static::findFilesBy('user_id', $value);
+		return static::where('user_id','=', $value)->get();
 	}
 	public static function vall() {
 		return static::all();
